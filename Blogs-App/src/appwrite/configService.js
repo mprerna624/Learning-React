@@ -17,7 +17,7 @@ export class Service {
 
     // Services of Database ----------------------------------------------------------
 
-    async createPost({title, slug, content, featuedImage, status, userId}) {
+    async createPost({title, slug, content, featuredImage, status, userId}) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId, 
@@ -26,7 +26,7 @@ export class Service {
                 {
                     title,
                     content,
-                    featuedImage,
+                    featuredImage,
                     status,
                     userId
                 }
@@ -37,7 +37,7 @@ export class Service {
         }
     }
 
-    async updatePost(slug, {title, content, featuedImage, status}) {
+    async updatePost(slug, {title, content, featuredImage, status}) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -46,7 +46,7 @@ export class Service {
                 {
                     title,
                     content,
-                    featuedImage,
+                    featuredImage,
                     status
                 }
             )
