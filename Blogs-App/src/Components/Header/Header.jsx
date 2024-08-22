@@ -41,7 +41,7 @@ function Header() {
   return (
     <header className='py-3 shadow bg-gray-500'>
       <Container>
-        <nav className='flex'>
+        <nav className='flex justify-between content-between'>
           {/* Logo Div */}
           <div className="mr-4">
             <Link to='/'>
@@ -50,7 +50,7 @@ function Header() {
           </div>
 
           {/* Links */}
-          <ul className='flex ml-auto'>
+          <ul className='flex'>
             {
               navItems.map( (item) => 
                 item.active ? (

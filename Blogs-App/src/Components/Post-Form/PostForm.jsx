@@ -12,7 +12,8 @@ function PostForm({post}) {
     const {register, handleSubmit, control, watch, setValue, getValues} = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            // slug: post?.slug || '',  this is not working bcoz Document contains slug as $id and there is no slug attribute in it.
+            slug: post?.$id || '',
             content: post?.content || '',
             status: post?.status || 'active'
         }
@@ -41,6 +42,7 @@ function PostForm({post}) {
             const file = await appwriteService.uploadFile(data.image[0]);
 
             if(file) {
+
                 const fileId = file.$id;
                 data.featuredImage = fileId;
                 const dbPost = await appwriteService.createPost({
@@ -59,7 +61,8 @@ function PostForm({post}) {
             return value
                     .trim()
                     .toLowerCase()
-                    .replace(/^[a-zA-Z\d]+/g, '-')
+                    .replace(/[^a-zA-Z\d\s]+/g, '-')
+                    .replace(/\s/g, "-")
         }
 
         return '';
@@ -93,7 +96,7 @@ function PostForm({post}) {
                     className="mb-4"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
-                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true })
                     }}
                 />
 

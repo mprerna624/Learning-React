@@ -13,10 +13,10 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect( () => {
-    dispatch(authService.getCurrentUser())
+    authService.getCurrentUser()
     .then( (data) => {
       if(data) {
-        dispatch(login({userData : data}));
+        dispatch(login(data));
       } else {
         dispatch(logout());
       }
@@ -25,12 +25,14 @@ function App() {
   }, [] )
 
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className="w-full block">
-        <Header />
-        <main>
-          TODO: {/* <Outlet /> */}
+    <div className='min-h-screen flex flex-wrap content-between justify-center bg-gray-400'>
+      <div className="w-full h-full flex flex-col">
+        <Header className='flex-grow' />
+
+        <main className='flex-grow'>
+          <Outlet />
         </main>
+
         <Footer />
       </div>
     </div>

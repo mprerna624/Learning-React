@@ -15,17 +15,19 @@ function RTE({name, control, label, defaultValue = ''}) {
             control = {control}
             render={({field: {onChange}}) => (
                 <Editor 
+                    apiKey='h4qa27biu48w03fia5q1ctjsgzwlmz2a3z7mb6qzirbn85m3'
+                    // {...field}
                     initialValue={defaultValue}
                     init={{
-                        initialValue: defaultValue,
                         height: 500,
                         menubar: true,
                         plugins: [
                             "image", "advlist", "autolink", "lists", "link", "image", "charmap", "preview", "anchor", "searchreplace", "visualblocks", "code", "fullscreen", "insertdatetime", "media", "table", "code", "help", "wordcount", "anchor"
                         ],
                         toolbar:
-                        "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-                        content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
+                        "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                        content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                        apiKey : ""
                     }}
                     onEditorChange={onChange}
                 />
